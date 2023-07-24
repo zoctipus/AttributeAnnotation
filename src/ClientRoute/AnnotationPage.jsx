@@ -6,6 +6,7 @@ import Experience from "./AnnotationUtils/Experience.jsx";
 import ControlPanel from "./AnnotationUtils/Annotation.jsx";
 import * as THREE from 'three'
 import './AnnotationPage.css'
+import { BASE_URL } from './AnnotationUtils/domain';
 
 function AnnotationPage() {
     const location = useLocation();
@@ -35,7 +36,7 @@ function AnnotationPage() {
         console.log(annotation);
     
         try {
-            const response = await fetch('http://localhost:3333/catalog/saveAnnotation', {
+            const response = await fetch(`${BASE_URL}/catalog/saveAnnotation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +85,7 @@ function AnnotationPage() {
     
     const getModel = async (modelID) => {
         try {
-            const response = await fetch(`http://localhost:3333/catalog/getModelUrl/${modelID}`);
+            const response = await fetch(`${BASE_URL}/catalog/getModelUrl/${modelID}`);
       
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -117,9 +118,9 @@ function AnnotationPage() {
         try {
             let response;
             if (modelID) {
-                response = await fetch(`http://localhost:3333/catalog/getNextModelUrl/${modelID}`);
+                response = await fetch(`${BASE_URL}/catalog/getNextModelUrl/${modelID}`);
             } else {
-                response = await fetch(`http://localhost:3333/catalog/getNextModelUrl/`);
+                response = await fetch(`${BASE_URL}/catalog/getNextModelUrl/`);
             }
       
             if (!response.ok) {

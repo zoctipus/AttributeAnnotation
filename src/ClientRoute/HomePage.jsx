@@ -2,6 +2,7 @@
 import React, { useState } from 'react'; // import useState
 import { useNavigate, useLocation } from 'react-router-dom'; 
 import './HomePage.css';
+import { BASE_URL } from './AnnotationUtils/domain';
 
 function LoginPage({ onSubmit }) {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ function LoginPage({ onSubmit }) {
     // reset error state
     setError('');
 
-    fetch('http://localhost:3333/catalog/login', {
+    fetch(`${BASE_URL}/catalog/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -107,7 +108,7 @@ function SignupPage({ onSuccessfulSignup }) {
     }
 
     if (formIsValid) {
-      fetch('http://localhost:3333/catalog/signup', {
+      fetch(`${BASE_URL}/catalog/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

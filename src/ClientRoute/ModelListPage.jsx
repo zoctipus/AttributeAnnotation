@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './ModelListPage.css';
+import { BASE_URL } from './AnnotationUtils/domain';
 
 function ModelListPage() {
   const location = useLocation();
@@ -9,7 +10,7 @@ function ModelListPage() {
   const [modelList, setModelList] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3333/catalog/getAnnotationList/${username}`)
+    fetch(`${BASE_URL}/catalog/getAnnotationList/${username}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
